@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 /* data logic codes */
 
-var MAX_RESERVATION = 5;
+const MAX_RESERVATION = 5;
 var waitlist = [];
 
 var reservations = [
