@@ -21,10 +21,10 @@ var waitlist = [];
 
 var reservations = [
     {
-        name : "Joe",
-        phoneNumber : 8007213994,
-        email: "jdoe@gmail.com",
-        uniqueId : "jdoe"
+        customerName: "Joe",
+        phoneNumber: 8007213994,
+        customerEmail: "jdoe@gmail.com",
+        customerID: "jdoe"
     }
 ];
 
