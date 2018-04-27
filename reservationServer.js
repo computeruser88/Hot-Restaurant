@@ -3,7 +3,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
-const PORT = process.env.PORT || 3000;;
 
 // Sets up the Express App
 // =============================================================
@@ -12,6 +11,7 @@ var app = express();
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.set( 'port', ( process.env.PORT || 5000 ));
 
 
 
@@ -74,4 +74,6 @@ app.post("/api/reservation", function(req, res) {
     res.json(newReservation);
   });
 
-app.listen(PORT, () => console.log('Listening on', PORT));
+  app.listen( app.get( 'port' ), function() {
+    console.log( 'Node server is running on port ' + app.get( 'port' ));
+    });
