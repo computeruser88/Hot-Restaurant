@@ -46,15 +46,15 @@ app.get("/reserve", function(req, res) {
 });
 
 app.get("/api/reservation", function(req,res){
-    return res.json(reservations);
+    res.json(reservations);
 });
 
-app.get("api/reservation_length", function(req,res){
-    return reservations.length;
+app.get("/api/reservation_length", function(req,res){
+    res.json(reservations.length);
 });
 
 app.get("/api/waitlist", function(req,res){
-    return res.json(waitlist);
+    res.json(waitlist);
 });
 
 app.post("/api/reservation", function(req, res) {

@@ -130,6 +130,7 @@
 
         $.get("/api/reservation_length", function(data){
             reservationLength = data;
+            console.log(data);
         })
 
         $.post("/api/reservation", newReservation).then(
