@@ -3,6 +3,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+var PORT = process.env.PORT !== undefined? process.env.PORT: 6000;
 
 // Sets up the Express App
 // =============================================================
@@ -69,6 +70,6 @@ app.post("/api/reservation", function(req, res) {
     res.json(newReservation);
   });
 
-app.listen(process.env.PORT || 6000, function() {
+app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
