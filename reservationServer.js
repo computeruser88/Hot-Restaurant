@@ -3,7 +3,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
-var port = process.env.PORT || 8000;
 // Sets up the Express App
 // =============================================================
 var app = express();
@@ -71,6 +70,6 @@ app.post("/api/reservation", function (req, res) {
     res.json(newReservation);
 });
 
-app.listen(port, function () {
-    console.log("App is running on port " + port);
+app.listen(process.env.PORT || 8080, function () {
+    console.log("App is running...");
 });  
