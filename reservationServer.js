@@ -11,9 +11,6 @@ var app = express();
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.set( 'port', ( process.env.PORT || 5000 ));
-
-
 
 /* data logic codes */
 
@@ -74,6 +71,6 @@ app.post("/api/reservation", function(req, res) {
     res.json(newReservation);
   });
 
-  app.listen( app.get( 'port' ), function() {
-    console.log( 'Node server is running on port ' + app.get( 'port' ));
-    });
+  app.listen(process.env.PORT || 3000, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
