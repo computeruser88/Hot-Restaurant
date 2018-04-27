@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 /* data logic codes */
 
-var maxReservation = 5;
+var MAX_RESERVATION = 5;
 var waitlist = [];
 
 var reservations = [
@@ -37,12 +37,31 @@ app.get("/", function(req, res) {
 });
 
 app.get("/view", function(req, res) {
-    res.sendFile(path.join(__dirname, "view.html"));
+    res.sendFile(path.join(__dirname, "tables.html"));
   });
   
 app.get("/add", function(req, res) {
-    res.sendFile(path.join(__dirname, "add.html"));
+    res.sendFile(path.join(__dirname, ".html"));
 });
+
+app.post("/api/reserveation", function(req, res) {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body-parser middleware
+    var newReservation = req.body;
+  
+    console.log(newReservation);
+  
+    if(reservations.length < MAX_RESERVATION){
+        reservations.push(newReservation);
+    }
+    else{
+        waitlist.push(newReservation);
+    }
+  
+    res.json(newReservation);
+  });
+
+
 
 app.listen(process.env.PORT || 6000, function() {
     console.log("App listening on PORT " + PORT);
