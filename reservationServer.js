@@ -3,7 +3,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
-
+var port = process.env.PORT || 8000;
 // Sets up the Express App
 // =============================================================
 var app = express();
@@ -30,47 +30,47 @@ var reservations = [
 
 // Basic route that sends the user first to the AJAX Page
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "home.html"));
 });
 
-app.get("/tables", function(req, res) {
+app.get("/tables", function (req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
-  });
-  
-app.get("/reserve", function(req, res) {
+});
+
+app.get("/reserve", function (req, res) {
     res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
-app.get("/api/reservation", function(req,res){
+app.get("/api/reservation", function (req, res) {
     res.json(reservations);
 });
 
-app.get("/api/reservation_length", function(req,res){
+app.get("/api/reservation_length", function (req, res) {
     res.json(reservations.length);
 });
 
-app.get("/api/waitlist", function(req,res){
+app.get("/api/waitlist", function (req, res) {
     res.json(waitlist);
 });
 
-app.post("/api/reservation", function(req, res) {
+app.post("/api/reservation", function (req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body-parser middleware
     var newReservation = req.body;
-  
+
     console.log(newReservation);
-  
-    if(reservations.length < MAX_RESERVATION){
+
+    if (reservations.length < MAX_RESERVATION) {
         reservations.push(newReservation);
     }
-    else{
+    else {
         waitlist.push(newReservation);
     }
-  
-    res.json(newReservation);
-  });
 
-  app.listen(process.env.PORT || 3000, function(){
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-  });
+    res.json(newReservation);
+});
+
+app.listen(port, function () {
+    console.log("App is running on port " + port);
+});  
