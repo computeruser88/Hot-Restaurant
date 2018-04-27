@@ -36,12 +36,12 @@ app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "home.html"));
 });
 
-app.get("/view", function(req, res) {
+app.get("/tables", function(req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
   });
   
-app.get("/add", function(req, res) {
-    res.sendFile(path.join(__dirname, ".html"));
+app.get("/reserve", function(req, res) {
+    res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
 app.post("/api/reservation", function(req, res) {
