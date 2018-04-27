@@ -68,7 +68,24 @@
 
             </div>
         </div>
-
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p id="confirmationMessage"></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
         <footer class="footer">
             <div class="container">
@@ -109,20 +126,21 @@
         // Here we get the location of the root page.
         // We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
         var currentURL = window.location.origin;
+        var reservationLength;
+
+        $.get("/api/reservation_length", function(data){
+            reservationLength = data;
+        })
 
         $.post("/api/reservation", newReservation).then(
             function(data) {
-
                 // If a table is available... tell user they are booked.
-                if (data) {
-                    alert("Yay! You are officially booked!")
+                if (reservationLength <= 5) {
+                    $("#confirmationMessage").html("Yay! You are officially booked!");
+                } else {
+                    $("#confirmationMessage").html("Sorry you are on the wait list");
                 }
-
-                // If a table is available... tell user they on the waiting list.
-                if (!data) {
-                    alert("Sorry you are on the wait list")
-                }
-
+                $(".modal").modal();
                 // Clear the form when submitting
                 $('#reserve_name').val("");
                 $('#reserve_phone').val("");

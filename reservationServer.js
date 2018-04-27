@@ -49,6 +49,10 @@ app.get("/api/reservation", function(req,res){
     return res.json(reservations);
 });
 
+app.get("api/reservation_length", function(req,res){
+    return reservations.length;
+});
+
 app.get("/api/waitlist", function(req,res){
     return res.json(waitlist);
 });
