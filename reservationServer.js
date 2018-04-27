@@ -70,6 +70,6 @@ app.post("/api/reservation", function (req, res) {
     res.json(newReservation);
 });
 
-app.listen(process.env.PORT || 8080, function () {
+app.listen(process.env.PORT, function () {
     console.log("App is running...");
 });  
